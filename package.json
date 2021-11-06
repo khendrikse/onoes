@@ -1,0 +1,23 @@
+{
+  "name": "onoes",
+  "version": "0.1.0",
+  "description": "Worries about pomodoro, reminders and focus time for you, so you don't have to.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "Pomodoro",
+    "timer",
+    "focus"
+  ],
+  "author": "khendrikse",
+  "license": "MIT",
+  "dependencies": {
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.4.1"
+  }
+}
