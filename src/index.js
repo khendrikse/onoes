@@ -37,7 +37,7 @@ app.on('activate', () => {
 let intervalContent = '';
 
 ipcMain.on('open-break', (event, currentTimer) => {
-  intervalContent = currentTimer.name;
+  intervalContent = currentTimer.title;
   intervalWindow = interval();
   intervalWindow.on('closed', () => {
     intervalWindow = null;
