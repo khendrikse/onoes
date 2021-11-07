@@ -2,7 +2,7 @@
   "name": "onoes",
   "version": "0.1.0",
   "description": "Worries about pomodoro, reminders and focus time for you, so you don't have to.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "jest",
     "start": "electron-forge start",
@@ -17,6 +17,7 @@
   "author": "khendrikse",
   "license": "MIT",
   "dependencies": {
+    "date-fns": "^2.25.0",
     "electron-squirrel-startup": "^1.0.0"
   },
   "devDependencies": {
@@ -28,6 +29,7 @@
     "babel-preset-electron": "^1.4.15",
     "electron": "^15.3.0",
     "eslint": "^8.2.0",
+    "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.4.1"
