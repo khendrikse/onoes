@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="../styles/menuWindow.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Train+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <main>
+      <header>
+        <h1>Onoes</h1>
+      </header>
+      <section id="entries">
+        <form id="entryForm">
+          <h2>Add a session</h2>
+          <label class="full-width-label" for="title" placeholder='Session title'>Title</label
+          ><input class="full-width-input" type="text" name="title" />
+          <fieldset>
+            <legend>Break type</legend>
+            <p>
+              Fullscreen wil show a message during the length of the break.
+              Notification will show a notification as a reminder and
+              immediately starts the next session.
+            </p>
+            <input
+              type="radio"
+              id="fullscreen"
+              name="breakType"
+              value="fullscreen"
+              checked
+            />
+            <label for="fullscreen">Fullscreen</label>
+            <input
+              type="radio"
+              id="notification"
+              name="breakType"
+              value="notification"
+            />
+            <label for="notification">Notification</label>
+          </fieldset>
+          <input type="time" name="time" step="5" />
+          <label for="time">Session (duration)</label>
+          <input type="time" name="break" step="5" />
+          <label for="break">Break (duration)</label>
+          <button onclick="addSession()">Add session</button>
+        </form>
+        <ol id="sessionQueueList"></ol>
+        <div>
+          <button onclick="clearQueue()">Clear queue</button>
+          <button onclick="startQueue()">Start</button>
+        </div>
+      </section>
+    </main>
+    <script src="../src/helpers/menu-window.js"></script>
+  </body>
+</html>
