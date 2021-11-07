@@ -49,3 +49,11 @@ ipcMain.handle('get-body', async () => intervalContent);
 ipcMain.on('close-break', () => {
   intervalWindow.close();
 });
+
+ipcMain.on('exit-app', () => {
+  app.quit();
+});
+
+ipcMain.on('minimize-main', () => {
+  mainWindow.minimize();
+});

@@ -1,0 +1,202 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto Condensed', sans-serif;
+  text-transform: uppercase;
+}
+
+body {
+  /* display: flex; */
+  margin: 0;
+  height: 100vh;
+}
+
+main {
+  margin: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background-color: #d9fcf1;
+  border-radius: 0px 30px 30px 0px;
+  height: 80px;
+  margin-bottom: 18px;
+  color: #c50000;
+  font-size: 24px;
+  text-align: center;
+  font-family: 'Train One', cursive;
+}
+
+h1 {
+  font-family: 'Train One', cursive;
+}
+
+h1,
+h2,
+label,
+legend {
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  border-bottom: 3px dotted #c50000;
+  margin-bottom: 12px;
+}
+
+label,
+legend {
+  font-weight: 700;
+}
+
+input {
+  font-size: 16px;
+  padding: 4px;
+  margin-top: 8px;
+  border: none;
+}
+
+input[type='text'],
+input[type='time'] {
+  height: 30px;
+  font-size: 18px;
+}
+
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 12px;
+}
+
+nav {
+  background-color: #f692b2;
+  height: 30px;
+  width: 100%;
+  -webkit-app-region: drag;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  margin: 0;
+  gap: 7px;
+}
+
+button[title='minimize'] img,
+button[title='close'] img {
+  display: none;
+}
+
+
+nav:hover button[title='minimize'] img,
+nav:hover button[title='close'] img {
+  display: block;
+}
+
+
+
+button[title='minimize'],
+button[title='close'],
+button[title='disabled'] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+button[title='close'] {
+  background-color: #fd4546;
+  border: 0.3px solid #ff0002;
+}
+
+button[title='minimize'] {
+  background-color: rgb(254, 176, 37);
+  border: 0.3px solid #ffa500;
+}
+
+button[title='disabled'] {
+  background-color: rgb(211, 211, 209);
+  border: 0.3px solid rgb(191, 191, 191);
+}
+
+#sessionQueueList {
+  height: 202px;
+  overflow: auto;
+}
+
+#entryForm {
+  background-color: #f692b2;
+  border-radius: 30px 0px 30px 0px;
+  padding: 20px;
+}
+
+#entries {
+  border-radius: 30px 0px 0px 30px;
+  background-color: #fcd9e4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: -webkit-fill-available;
+}
+
+.full-width-label,
+.full-width-input {
+  display: block;
+  width: 100%;
+}
+
+.full-width-input {
+  margin-bottom: 12px;
+}
+
+.time-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 12px;
+  grid-gap: 8px;
+}
+
+.time-inputs input {
+  width: 100%;
+  text-align: center;
+}
+
+button {
+  background-color: #d9fcf1;
+  color: #c50000;
+  border: none;
+  width: 100%;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 12px;
+  padding: 8px;
+}
+
+.list-menu {
+  display: flex;
+  gap: 12px;
+  padding: 0 20px 20px 20px;
+}
+
+.error {
+  box-shadow: inset 0px 0px 0px 2px #c50000;
+}
+
+#form-errors {
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  color: #c50000;
+  font-weight: bold;
+}
+
+#form-errors p {
+  margin: 0;
+}
