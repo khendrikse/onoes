@@ -6,8 +6,9 @@ const sessionBreak = document.querySelector('input[name=break]');
 const timerTitle = document.querySelector('input[name=title');
 const breakType = [...document.querySelectorAll('input[name=breakType]')];
 const entryForm = document.getElementById('entryForm');
-const timer = document.getElementById('timer');
 const errors = document.getElementById('form-errors');
+const startButton = document.getElementById('start');
+const stopButton = document.getElementById('stop');
 
 const getErrors = () => {
   const errorList = { withErrors: [], empty: [], short: [] };
@@ -33,6 +34,7 @@ const getErrors = () => {
 };
 
 const addSession = () => {
+  const { withErrors, empty, short } = getErrors();
   [session, sessionBreak, timerTitle].map(input =>
     input.classList.remove('error')
   );
@@ -41,18 +43,16 @@ const addSession = () => {
   const breakTimeValue = sessionBreak.value;
   const title = timerTitle.value;
 
-  if ([sessionTimeValue, breakTimeValue, title].some(input => input === '')) {
-    const { withErrors, empty, short } = getErrors();
+  if (withErrors.length > 0) {
     const someEmpty = empty.length > 0;
     const someTooShort = short.length > 0;
 
     const emptyNode = document.createElement('p');
+    const shortNode = document.createElement('p');
 
     emptyNode.innerHTML = someEmpty
       ? `${empty.map(input => ' '.concat(input))} can't be empty.`
       : '';
-
-    const shortNode = document.createElement('p');
 
     shortNode.innerHTML = someTooShort
       ? `${short.map(input =>
@@ -68,6 +68,7 @@ const addSession = () => {
     errors.appendChild(shortNode);
     return withErrors.map(node => node.classList.add('error'));
   }
+
   const newListItem = {
     sessionTime: window.dateFns.convertToMilliseconds(sessionTimeValue),
     breakTime: window.dateFns.convertToMilliseconds(breakTimeValue),
@@ -86,7 +87,7 @@ const addSession = () => {
   listNode.appendChild(listText);
   sessionQueueList.appendChild(listNode);
 
-  entryForm.reset();
+  return entryForm.reset();
 };
 
 const clearQueue = () => {
@@ -94,18 +95,20 @@ const clearQueue = () => {
   sessionQueueList.innerHTML = '';
 };
 
+let currentTimeOut;
+
 const runTimeOut = (type, list) => {
   const newList = list;
   if (list.length === 0) {
     entryForm.style.display = 'block';
-    timer.style.display = 'none';
+    startButton.style.display = 'block';
+    stopButton.style.display = 'none';
     return;
   }
-  if (type === 'timer') {
-    const { title, sessionTime } = newList[0];
-    timer.innerHTML = title;
 
-    setTimeout(() => {
+  if (type === 'timer') {
+    const { sessionTime } = newList[0];
+    currentTimeOut = setTimeout(() => {
       runTimeOut('break', newList);
     }, sessionTime);
     return;
@@ -116,9 +119,8 @@ const runTimeOut = (type, list) => {
 
     if (showFullScreen) {
       window.electron.openBreakWindow(currentTimer);
-      timer.innerHTML = `${title} break`;
 
-      setTimeout(() => {
+      currentTimeOut = setTimeout(() => {
         window.electron.closeBreakWindow();
         runTimeOut('timer', newList);
       }, breakTime);
@@ -132,8 +134,15 @@ const runTimeOut = (type, list) => {
 
 const startQueue = () => {
   const startedList = [...sessionQueue];
-
+  startButton.style.display = 'none';
+  stopButton.style.display = 'block';
   entryForm.style.display = 'none';
-  timer.style.display = 'block';
   runTimeOut('timer', startedList);
+};
+
+const stopQueue = () => {
+  entryForm.style.display = 'block';
+  startButton.style.display = 'block';
+  stopButton.style.display = 'none';
+  clearTimeout(currentTimeOut);
 };
