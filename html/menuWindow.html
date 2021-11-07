@@ -20,40 +20,56 @@
       <section id="entries">
         <form id="entryForm">
           <h2>Add a session</h2>
-          <label class="full-width-label" for="title" placeholder='Session title'>Title</label
-          ><input class="full-width-input" type="text" name="title" />
+          <label class="full-width-label" for="title">Title</label
+          ><input
+            class="full-width-input"
+            type="text"
+            placeholder="Session title"
+            name="title"
+          />
           <fieldset>
-            <legend>Break type</legend>
-            <p>
-              Fullscreen wil show a message during the length of the break.
-              Notification will show a notification as a reminder and
-              immediately starts the next session.
-            </p>
-            <input
-              type="radio"
-              id="fullscreen"
-              name="breakType"
-              value="fullscreen"
-              checked
-            />
-            <label for="fullscreen">Fullscreen</label>
-            <input
-              type="radio"
-              id="notification"
-              name="breakType"
-              value="notification"
-            />
-            <label for="notification">Notification</label>
+            <legend class="full-width-label">Break type</legend>
+            <label>
+              <input
+                type="radio"
+                id="fullscreen"
+                name="breakType"
+                value="fullscreen"
+                checked
+              />
+              Fullscreen
+            </label>
+            <label for="notification">
+              <input
+                type="radio"
+                id="notification"
+                name="breakType"
+                value="notification"
+              />
+
+              Notification</label
+            >
           </fieldset>
-          <input type="time" name="time" step="5" />
-          <label for="time">Session (duration)</label>
-          <input type="time" name="break" step="5" />
-          <label for="break">Break (duration)</label>
-          <button onclick="addSession()">Add session</button>
+          <div class="time-inputs">
+            <label for="time">
+              Session (duration)
+              <input type="time" name="time" step="5" />
+            </label>
+            <label for="break"
+              >Break (duration)
+              <input type="time" name="break" step="5" />
+            </label>
+          </div>
+          <button type="button" onclick="addSession()">Add session</button>
         </form>
         <ol id="sessionQueueList"></ol>
-        <div>
-          <button onclick="clearQueue()">Clear queue</button>
+        <div class="list-menu">
+          <button
+            style="border-radius: 0px 0px 0px 30px"
+            onclick="clearQueue()"
+          >
+            Clear queue
+          </button>
           <button onclick="startQueue()">Start</button>
         </div>
       </section>
