@@ -13,6 +13,21 @@
   </head>
 
   <body>
+    <nav>
+      <button type="button" title="close" onclick="window.electron.exitApp()">
+        <img width="10" height="10" src="../img/close_black_24dp.svg" /></button
+      ><button
+        type="button"
+        title="minimize"
+        onclick="window.electron.minimizeMain()"
+      >
+        <img
+          width="10"
+          height="10"
+          src="../img/remove_black_24dp.svg"
+        /></button
+      ><button type="button" title="disabled" disabled />
+    </nav>
     <main>
       <header>
         <h1>Onoes</h1>
@@ -60,6 +75,7 @@
               <input type="time" name="break" step="5" />
             </label>
           </div>
+          <div id="form-errors"></div>
           <button type="button" onclick="addSession()">Add session</button>
         </form>
         <ol id="sessionQueueList"></ol>

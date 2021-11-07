@@ -66,8 +66,3 @@ typings/
 
 # JS files, build on server
 dist/
-
-# Don't check in CSS, we will build this on the server
-src/**/*.css
-
-**/*.css

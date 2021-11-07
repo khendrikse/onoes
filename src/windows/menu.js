@@ -6,7 +6,6 @@ const menuWindow = () => {
     width: 500,
     height: 850,
     frame: false,
-    // transparent: true,
     hasShadow: false,
     resizable: false,
     webPreferences: {
