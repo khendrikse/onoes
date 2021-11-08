@@ -4,7 +4,6 @@ const path = require('path');
 const intervalWindow = () => {
   const window = new BrowserWindow({
     fullscreen: true,
-    resizable: false,
     webPreferences: {
       preload: path.join(__dirname, '../preload.js')
     }

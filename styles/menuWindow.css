@@ -1,15 +1,3 @@
-* {
-  box-sizing: border-box;
-  font-family: 'Roboto Condensed', sans-serif;
-  text-transform: uppercase;
-}
-
-body {
-  /* display: flex; */
-  margin: 0;
-  height: 100vh;
-}
-
 main {
   margin: 18px;
   display: flex;
@@ -27,22 +15,11 @@ header {
   font-family: 'Train One', cursive;
 }
 
-h1 {
-  font-family: 'Train One', cursive;
-}
-
-h1,
-h2,
 label,
 legend {
   text-transform: uppercase;
   margin: 0;
   padding: 0;
-}
-
-h2 {
-  border-bottom: 3px dotted #c50000;
-  margin-bottom: 12px;
 }
 
 label,
@@ -72,30 +49,15 @@ fieldset {
   margin-bottom: 12px;
 }
 
-nav {
-  background-color: #f692b2;
-  height: 30px;
-  width: 100%;
-  -webkit-app-region: drag;
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-  margin: 0;
-  gap: 7px;
-}
-
 button[title='minimize'] img,
 button[title='close'] img {
   display: none;
 }
 
-
 nav:hover button[title='minimize'] img,
 nav:hover button[title='close'] img {
   display: block;
 }
-
-
 
 button[title='minimize'],
 button[title='close'],
@@ -165,18 +127,6 @@ button[title='disabled'] {
 .time-inputs input {
   width: 100%;
   text-align: center;
-}
-
-button {
-  background-color: #d9fcf1;
-  color: #c50000;
-  border: none;
-  width: 100%;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 20px;
-  margin-top: 12px;
-  padding: 8px;
 }
 
 .list-menu {

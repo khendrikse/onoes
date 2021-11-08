@@ -19,15 +19,15 @@ const getErrors = () => {
   if (sessionBreak.value === '') {
     errorList.empty.push('Break');
     errorList.withErrors.push(sessionBreak);
-  } else if (window.dateFns.convertToMilliseconds(sessionBreak.value) < 60000) {
-    errorList.short.push('Break');
+  } else if (window.dateFns.convertToMilliseconds(sessionBreak.value) < 30000) {
+    errorList.short.push('Break cannot be less than 30 seconds');
     errorList.withErrors.push(sessionBreak);
   }
   if (session.value === '') {
     errorList.empty.push('Session');
     errorList.withErrors.push(session);
   } else if (window.dateFns.convertToMilliseconds(session.value) < 60000) {
-    errorList.short.push('Session');
+    errorList.short.push('Session cannot be less than a minute');
     errorList.withErrors.push(session);
   }
   return errorList;
@@ -55,9 +55,7 @@ const addSession = () => {
       : '';
 
     shortNode.innerHTML = someTooShort
-      ? `${short.map(input =>
-          ' '.concat(input)
-        )} can't be less than 1 minute <3.`
+      ? `${short.map(input => ' '.concat(input))} <3.`
       : '';
 
     const topErrorMessage = document.createElement('p');
