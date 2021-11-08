@@ -1,4 +1,4 @@
-const { app, ipcMain } = require('electron');
+const { app, ipcMain, session } = require('electron');
 const menu = require('./windows/menu');
 const interval = require('./windows/interval');
 
@@ -20,6 +20,14 @@ function createMainWindow() {
 
 app.on('ready', () => {
   createMainWindow();
+  session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
+    callback({
+      responseHeaders: {
+        ...details.responseHeaders,
+        'Content-Security-Policy': ["script-src 'self'"]
+      }
+    });
+  });
 });
 
 app.on('window-all-closed', () => {
