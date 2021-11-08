@@ -125,7 +125,7 @@ const runTimeOut = (type, list) => {
       return;
     }
 
-    const notification = new Notification(title, { body: title });
+    const notification = new Notification('Onoes!', { body: title });
     runTimeOut('timer', newList);
   }
 };

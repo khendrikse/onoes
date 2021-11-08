@@ -9,11 +9,10 @@ const menuWindow = () => {
     hasShadow: false,
     resizable: false,
     webPreferences: {
-      preload: path.join(__dirname, '../preload.js')
+      preload: path.join(__dirname, '../preload.bundle.js')
     }
   });
 
-  window.webContents.openDevTools();
   window.loadURL(`file://${__dirname}/../../html/menuWindow.html`);
   return window;
 };
