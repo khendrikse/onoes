@@ -6,7 +6,6 @@ const menuWindow = () => {
     width: 500,
     height: 850,
     frame: false,
-    hasShadow: false,
     resizable: false,
     webPreferences: {
       preload: path.join(__dirname, '../preload.bundle.js')
