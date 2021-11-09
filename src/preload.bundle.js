@@ -19310,7 +19310,7 @@ function init() {
       ipcRenderer.send('open-break', currentTimer),
     closeBreakWindow: () => ipcRenderer.send('close-break'),
     exitApp: () => ipcRenderer.send('exit-app'),
-    minimizeMain: () => ipcRenderer.send('minimize-main'),
+    minimizeMain: () => ipcRenderer.send('minimize-main')
   });
   contextBridge.exposeInMainWorld('isElectron', true);
   contextBridge.exposeInMainWorld('dateFns', {

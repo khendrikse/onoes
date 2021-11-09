@@ -34,7 +34,8 @@ app.on('ready', () => {
           'sha256-2gGc1PPXLuk9xZ6lZXuAC2wDOzVuOkYEl9YkvI10zOY='
           'sha256-tuYq/jRl/+89o2obcTdcRLE45Nv2r40J+kJ0HgJegsM='
           'sha256-onPuynW7C0EwU3tad9L8KRadhdLjz4son1URYcG8kpI='
-          'sha256-X6Y/kNvGCaTvZcwfsJOpAMcue0keOUuFBFLDxhUT9m0='`
+          'sha256-X6Y/kNvGCaTvZcwfsJOpAMcue0keOUuFBFLDxhUT9m0='
+          'sha256-/hhpwxUZwZ7pIL6DdRCSueBGdDYqDWnf1k0o3uR1sEQ='`
         ]
       }
     });
