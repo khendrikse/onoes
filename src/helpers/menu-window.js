@@ -9,6 +9,7 @@ const entryForm = document.getElementById('entryForm');
 const errors = document.getElementById('form-errors');
 const startButton = document.getElementById('start');
 const stopButton = document.getElementById('stop');
+const sessionNameNode = document.getElementById('sessionName');
 
 const getErrors = () => {
   const errorList = { withErrors: [], empty: [], short: [] };
@@ -68,6 +69,7 @@ const addSession = () => {
   }
 
   const newListItem = {
+    id: `${sessionQueue.length + 1}-`.concat(title),
     sessionTime: window.dateFns.convertToMilliseconds(sessionTimeValue),
     breakTime: window.dateFns.convertToMilliseconds(breakTimeValue),
     title,
@@ -78,6 +80,7 @@ const addSession = () => {
   sessionQueue.push(newListItem);
 
   const listNode = document.createElement('li');
+  listNode.setAttribute('id', newListItem.id);
   const listText = document.createTextNode(
     `${title} - Timer: ${sessionTimeValue}, Break: ${breakTimeValue}`
   );
@@ -94,6 +97,7 @@ const clearQueue = () => {
 };
 
 let currentTimeOut;
+let currentSessionId;
 
 const runTimeOut = (type, list) => {
   const newList = list;
@@ -101,24 +105,38 @@ const runTimeOut = (type, list) => {
     entryForm.style.display = 'block';
     startButton.style.display = 'block';
     stopButton.style.display = 'none';
+    sessionNameNode.style.display = 'none';
+    if (currentSessionId) {
+      const currentSessionNode = document.getElementById(currentSessionId);
+      currentSessionNode.style.backgroundColor = 'transparent';
+      currentSessionId = null;
+    }
     return;
   }
 
   if (type === 'timer') {
-    const { sessionTime } = newList[0];
+    const { sessionTime, id } = newList[0];
+    currentSessionId = id;
+    const currentSessionNode = document.getElementById(currentSessionId);
+    currentSessionNode.style.backgroundColor = '#f692b2';
+    sessionNameNode.innerHTML = 'In a session';
     currentTimeOut = setTimeout(() => {
       runTimeOut('break', newList);
     }, sessionTime);
     return;
   }
+
   if (type === 'break') {
     const currentTimer = newList.shift();
+    const currentSessionNode = document.getElementById(currentSessionId);
+    sessionNameNode.innerHTML = 'Taking a break';
     const { title, breakTime, showFullScreen } = currentTimer;
 
     if (showFullScreen) {
       window.electron.openBreakWindow(currentTimer);
 
       currentTimeOut = setTimeout(() => {
+        currentSessionNode.style.backgroundColor = 'transparent';
         window.electron.closeBreakWindow();
         runTimeOut('timer', newList);
       }, breakTime);
@@ -126,7 +144,10 @@ const runTimeOut = (type, list) => {
     }
 
     const notification = new Notification('Onoes!', { body: title });
-    runTimeOut('timer', newList);
+    currentTimeOut = setTimeout(() => {
+      runTimeOut('timer', newList);
+      currentSessionNode.style.backgroundColor = 'transparent';
+    }, breakTime);
   }
 };
 
@@ -135,6 +156,7 @@ const startQueue = () => {
   startButton.style.display = 'none';
   stopButton.style.display = 'block';
   entryForm.style.display = 'none';
+  sessionNameNode.style.display = 'block';
   runTimeOut('timer', startedList);
 };
 
@@ -142,5 +164,8 @@ const stopQueue = () => {
   entryForm.style.display = 'block';
   startButton.style.display = 'block';
   stopButton.style.display = 'none';
+  sessionNameNode.style.display = 'none';
+  const currentSessionNode = document.getElementById(currentSessionId);
+  currentSessionNode.style.backgroundColor = 'transparent';
   clearTimeout(currentTimeOut);
 };
